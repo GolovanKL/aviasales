@@ -1,7 +1,6 @@
 .flight_item {
   padding: 20px;
   width: 502px;
-  height: 184px;
   background-color: white;
   margin: 20px 0;
   border-radius: 5px;
@@ -16,7 +15,13 @@
       line-height: 24px;
       color: #2196F3;
     }
+
+    margin-bottom: 20px;
   }
 
-
+  .segment {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
 }

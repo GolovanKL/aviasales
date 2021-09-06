@@ -13,3 +13,13 @@ export const removeAllTransfers = () => ({
   type: actionTypes.REMOVE_ALL_TRANSFERS
 });
 
+export const setLoading = (state) => ({
+  type: actionTypes.SET_LOADING,
+  payload: state,
+});
+
+export const addTickets = tickets => ({
+  type: actionTypes.ADD_TICKETS,
+  payload: tickets
+});
+

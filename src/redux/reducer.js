@@ -21,6 +21,16 @@ const reducer = (state = initial, action) => {
         ...state,
         transfers: state.transfers.map(elem => ({...elem, checked: false}))
       }
+    case actionTypes.SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      }
+    case actionTypes.ADD_TICKETS:
+      return {
+        ...state,
+        tickets: [...state.tickets, ...action.payload]
+      }
     default: return state
   }
 };
