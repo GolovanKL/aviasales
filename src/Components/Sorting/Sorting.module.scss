@@ -1,0 +1,27 @@
+.sorting {
+  width: 505px;
+}
+
+.button {
+  color: #4A4A4A;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  width: 168px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #DFE5EC;
+  outline: none;
+  &:first-of-type {
+    border-radius: 5px 0 0 5px;
+  }
+  &:last-of-type {
+    border-radius: 0 5px 5px 0;
+  }
+}
+
+.active {
+  background-color: #2196F3;
+  color: white;
+}

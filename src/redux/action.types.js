@@ -1,0 +1,7 @@
+const actionTypes = {
+  SET_TRANSFERS: 'SET_TRANSFERS',
+  SET_ALL_TRANSFERS: 'SET_ALL_TRANSFERS',
+  REMOVE_ALL_TRANSFERS: 'REMOVE_ALL_TRANSFERS',
+};
+
+export default actionTypes;
