@@ -8,6 +8,7 @@
   .price {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .price_amount {
       font-weight: 600;
@@ -23,5 +24,18 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+
+    .title {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      color: #A0B0B9;
+    }
+
+    .value {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+    }
   }
 }

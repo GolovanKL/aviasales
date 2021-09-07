@@ -29,7 +29,7 @@ const reducer = (state = initial, action) => {
     case actionTypes.ADD_TICKETS:
       return {
         ...state,
-        tickets: [...state.tickets, ...action.payload]
+        tickets: [...action.payload]
       }
     default: return state
   }

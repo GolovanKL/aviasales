@@ -11,16 +11,19 @@ import {setLoading, addTickets} from "../../redux/store.actions";
 
 function FlightsTable({isLoading, setLoading, addTickets, tickets, transfers}) {
 
+  let data = [];
+
   useEffect(() => {
     const getData = async (searchId) => {
       try {
         return fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
           .then(res => res.json())
           .then(body => {
-            addTickets(body.tickets);
+            data = [...data, ...body.tickets];
             if (!body.stop) {
               getData(searchId)
             } else {
+              addTickets(data);
               setLoading(false);
             }
           }).catch(() => getData(searchId))
@@ -38,30 +41,26 @@ function FlightsTable({isLoading, setLoading, addTickets, tickets, transfers}) {
   }, [setLoading, addTickets]);
 
 const ticketsToRender = () => {
-  if (transfers[0].checked) return tickets;
+  if (transfers[0].checked) return tickets.slice(0, 5);
   let result = [];
   transfers.slice(1).forEach(elem => {
     if (elem.checked) {
-      console.log(elem.stops);
-      result = [...result, ...tickets.slice(0, 25).filter(ticket => {
+      result = [...result, ...tickets.slice(0, 100).filter(ticket => {
         const maxStops = Math.max(ticket.segments[0].stops.length, ticket.segments[1].stops.length);
         if (elem.stops === maxStops) return ticket})
       ]
     }
   })
-  return result;
+  return result.slice(0, 5);
 };
-
-  console.log(ticketsToRender());
-
-
 
   return (
     <div>
       <Sorting/>
       {isLoading ?
         <Spin size="large"/> :
-        tickets.slice(0, 5).map(() => <FlightCard/>)
+        ticketsToRender().map(({carrier, price, segments}) =>
+          <FlightCard carrier={carrier} price={price} segments={segments}/> )
       }
     </div>
   )
