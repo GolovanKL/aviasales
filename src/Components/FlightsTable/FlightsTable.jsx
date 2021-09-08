@@ -11,9 +11,10 @@ import {setLoading, addTickets} from "../../redux/store.actions";
 
 function FlightsTable({isLoading, setLoading, addTickets, tickets, transfers}) {
 
-  let data = [];
 
   useEffect(() => {
+    let data = [];
+
     const getData = async (searchId) => {
       try {
         return fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
