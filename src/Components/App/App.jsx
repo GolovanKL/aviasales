@@ -1,10 +1,10 @@
 import React from "react";
 
-import classes from './App.module.scss';
-
 import Header from "../Header/Header";
 import Transfers from "../Transfers/Transfers";
 import FlightsTable from "../FlightsTable/FlightsTable";
+
+import classes from './App.module.scss';
 
 function App() {
 

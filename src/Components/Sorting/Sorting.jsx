@@ -1,22 +1,31 @@
 import React from 'react';
-
+import { connect } from "react-redux";
 import classNames from "classnames";
+
+import { setSorting } from "../../redux/store.actions";
 
 import classes from './Sorting.module.scss'
 
-
-function Sorting() {
-
-  const inactiveButton = classNames(classes.button);
-  const activeButton = classNames(classes.button, classes.active)
+function Sorting({sorts, setSorting}) {
 
   return (
     <div className={classes.sorting}>
-        <button type="button" className={activeButton}>САМЫЙ ДЕШЕВЫЙ</button>
-        <button type="button" className={inactiveButton}>САМЫЙ БЫСТРЫЙ</button>
-        <button type="button" className={inactiveButton}>ОПТИМАЛЬНЫЙ</button>
+      {sorts.map(({name, active}) =>
+        <button
+          key={name}
+          type="button"
+          name={name}
+          className={classNames(classes.button, (active && classes.active))}
+          onClick={({target: {name}}) => setSorting(name)}
+        >{name}
+        </button>
+      )}
     </div>
   );
 }
 
-export default Sorting;
+const mapDispatchToProps = {setSorting};
+
+const mapStateToProps = ({sorts}) => ({sorts});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);

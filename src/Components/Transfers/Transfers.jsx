@@ -41,31 +41,29 @@ function Transfers({transfers, setTransfers, setAllTransfers, removeAllTransfers
         <span>КОЛИЧЕСТВО ПЕРЕСАДОК</span>
       </div>
       <ul className={classes.transfers}>
-        {transfers.map(elem => {
-          return (
-            <li key={elem.name}>
-              <label className={classes.transfers_item}>
-                <input type="checkbox" name={elem.name} checked={elem.checked}
-                       onChange={() => onTransfers(elem.name)}/>
-                {elem.name}
-              </label>
-            </li>
-          );
-        })
-        }
+        {transfers.map(({name, checked}) => (
+          <li key={name}>
+            <label className={classes.transfers_item}>
+              <input type="checkbox"
+                     name={name}
+                     checked={checked}
+                     onChange={() => onTransfers(name)}
+              />
+              {name}
+            </label>
+          </li>
+        ))}
       </ul>
     </div>
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  setTransfers: name => dispatch(setTransfers(name)),
-  setAllTransfers: () => dispatch(setAllTransfers()),
-  removeAllTransfers: () => dispatch(removeAllTransfers()),
-})
+const mapDispatchToProps = {
+  setTransfers,
+  setAllTransfers,
+  removeAllTransfers,
+}
 
-const mapStateToProps = ({transfers}) => ({
-  transfers,
-});
+const mapStateToProps = ({transfers}) => ({transfers});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transfers);

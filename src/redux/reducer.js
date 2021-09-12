@@ -29,7 +29,14 @@ const reducer = (state = initial, action) => {
     case actionTypes.ADD_TICKETS:
       return {
         ...state,
-        tickets: [...action.payload]
+        tickets: [...state.tickets, ...action.payload]
+      }
+    case actionTypes.SET_SORTING:
+      return {
+        ...state,
+        activeSort: action.payload,
+        sorts: state.sorts.map(sort => (sort.name === action.payload ?
+          {...sort, active: true} : {...sort, active: false}))
       }
     default: return state
   }

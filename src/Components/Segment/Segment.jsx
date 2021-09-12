@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {flightDuration, arrival, departure} from "./timeHandlers";
-import classes from "./Route.module.scss";
+import classes from "./Segment.module.scss";
 
-const Route = ({segment: {origin, destination, date, duration, stops}}) => {
+const Segment = ({segment: {origin, destination, date, duration, stops}}) => {
   const stopsTitles = {
     0: 'БЕЗ ПЕРЕСАДОК',
     1: '1 ПЕРЕСАДКА',
@@ -35,4 +35,4 @@ const Route = ({segment: {origin, destination, date, duration, stops}}) => {
   )
 };
 
-export default Route;
+export default Segment;
