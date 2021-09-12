@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {flightDuration, arrival, departure} from "./timeHandlers";
-import classes from "./Segment.module.scss";
+import { flightDuration, arrival, departure } from './timeHandlers';
+import classes from './Segment.module.scss';
 
-const Segment = ({segment: {origin, destination, date, duration, stops}}) => {
-
+const Segment = ({ segment: { origin, destination, date, duration, stops } }) => {
   Segment.propTypes = {
     segment: PropTypes.shape({
       origin: PropTypes.string,
       destination: PropTypes.string,
       date: PropTypes.string,
       duration: PropTypes.number,
-      stops: PropTypes.arrayOf(PropTypes.string)
+      stops: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
-  }
+  };
 
   const stopsTitles = {
     0: 'БЕЗ ПЕРЕСАДОК',
     1: '1 ПЕРЕСАДКА',
     2: '2 ПЕРЕСАДКИ',
-    3: '3 ПЕРЕСАДКИ'
+    3: '3 ПЕРЕСАДКИ',
   };
 
-  const stopNames = stops.map(stop => ` ${stop}`).toString();
+  const stopNames = stops.map((stop) => ` ${stop}`).toString();
 
   return (
     <div className={classes.segment}>
@@ -44,7 +43,7 @@ const Segment = ({segment: {origin, destination, date, duration, stops}}) => {
         <div className={classes.value}>{stopNames}</div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Segment;
