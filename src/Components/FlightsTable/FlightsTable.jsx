@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import uniqid from 'uniqid';
+import PropTypes from 'prop-types';
+
 
 import Sorting from "../Sorting/Sorting";
 import FlightCard from "../FlightCard/FlightCard";
@@ -9,6 +11,14 @@ import { fetchData } from "../../redux/store.actions";
 import dataToRender from "./ticketsHandlers";
 
 function FlightsTable({isLoading, tickets, transfers, activeSort, fetchData}) {
+
+  FlightsTable.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
+    transfers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    activeSort: PropTypes.string.isRequired,
+    fetchData: PropTypes.func.isRequired
+  }
 
   useEffect(() => {
     if (tickets.length === 0) fetchData()

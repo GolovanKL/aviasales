@@ -1,9 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {flightDuration, arrival, departure} from "./timeHandlers";
 import classes from "./Segment.module.scss";
 
 const Segment = ({segment: {origin, destination, date, duration, stops}}) => {
+
+  Segment.propTypes = {
+    segment: PropTypes.shape({
+      origin: PropTypes.string,
+      destination: PropTypes.string,
+      date: PropTypes.string,
+      duration: PropTypes.number,
+      stops: PropTypes.arrayOf(PropTypes.string)
+    }).isRequired,
+  }
+
   const stopsTitles = {
     0: 'БЕЗ ПЕРЕСАДОК',
     1: '1 ПЕРЕСАДКА',

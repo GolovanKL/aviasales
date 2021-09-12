@@ -1,11 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 import { setTransfers, setAllTransfers, removeAllTransfers } from "../../redux/store.actions";
 
 import classes from "./Transfers.module.scss"
 
 function Transfers({transfers, setTransfers, setAllTransfers, removeAllTransfers}) {
+
+  Transfers.propTypes = {
+    transfers: PropTypes.arrayOf(PropTypes.string).isRequired,
+    setTransfers: PropTypes.func.isRequired,
+    setAllTransfers: PropTypes.func.isRequired,
+    removeAllTransfers: PropTypes.func.isRequired
+  }
 
   if (!transfers[0].checked) {
     if (transfers.slice(1).filter(elem => !elem.checked).length === 0) {
@@ -22,7 +30,6 @@ function Transfers({transfers, setTransfers, setAllTransfers, removeAllTransfers
         default:
           setTransfers(name);
           setTransfers('Все');
-          return;
       }
     } else {
       switch (name) {

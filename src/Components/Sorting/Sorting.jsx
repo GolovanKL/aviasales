@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux";
 import classNames from "classnames";
+import PropTypes from 'prop-types';
 
 import { setSorting } from "../../redux/store.actions";
 
 import classes from './Sorting.module.scss'
 
 function Sorting({sorts, setSorting}) {
+
+  Sorting.propTypes = {
+    sorts: PropTypes.arrayOf(PropTypes.string).isRequired,
+    setSorting: PropTypes.func.isRequired
+  }
 
   return (
     <div className={classes.sorting}>
@@ -16,7 +22,7 @@ function Sorting({sorts, setSorting}) {
           type="button"
           name={name}
           className={classNames(classes.button, (active && classes.active))}
-          onClick={({target: {name}}) => setSorting(name)}
+          onClick={({target}) => setSorting(target.name)}
         >{name}
         </button>
       )}
