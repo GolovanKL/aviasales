@@ -15,10 +15,15 @@
   flex-direction: column;
   min-height: 180px;
   justify-content: space-between;
-  margin-top: 20px
-;
+  margin-top: 20px;
+
 }
 
 .transfers_item {
   line-height: 20px;
+  font-size: 14px;
+
+  input {
+    margin-right: 7px;
+  }
 }

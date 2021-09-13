@@ -38,6 +38,11 @@ const reducer = (state = initial, action) => {
         sorts: state.sorts.map(sort => (sort.name === action.payload ?
           {...sort, active: true} : {...sort, active: false}))
       }
+    case actionTypes.SET_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      }
     default: return state
   }
 };

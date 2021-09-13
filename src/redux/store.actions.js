@@ -29,6 +29,11 @@ export const setSorting = name => ({
   payload: name
 });
 
+const setError = message => ({
+  type: actionTypes.SET_ERROR,
+  payload: message
+})
+
 export const fetchData = () => (dispatch) => {
 
   let loading = true;
@@ -45,7 +50,6 @@ export const fetchData = () => (dispatch) => {
         if (error.response.status === 500) {
           getData(searchId);
         } else {
-          // console.error(error.response);
           dispatch(setLoading(false));
         }
       });
@@ -54,7 +58,8 @@ export const fetchData = () => (dispatch) => {
 
   axios.get('https://front-test.beta.aviasales.ru/search')
     .then(({data: {searchId}}) => getData(searchId))
-    .catch(() => {
+    .catch((error) => {
+      dispatch(setError(error.message));
       dispatch(setLoading(false));
     });
 }

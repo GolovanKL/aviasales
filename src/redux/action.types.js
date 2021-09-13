@@ -5,6 +5,7 @@ const actionTypes = {
   SET_LOADING: 'SET_LOADING',
   ADD_TICKETS: 'ADD_TICKETS',
   SET_SORTING: 'SET_SORTING',
+  SET_ERROR: 'SET_ERROR'
 };
 
 export default actionTypes;

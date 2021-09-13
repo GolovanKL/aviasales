@@ -14,6 +14,7 @@ const initial = {
     {name: 'ОПТИМАЛЬНЫЙ', active: false}
   ],
   tickets: [],
+  error: '',
 }
 
 
