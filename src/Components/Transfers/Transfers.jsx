@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,17 +8,19 @@ import classes from './Transfers.module.scss';
 
 function Transfers({ transfers, setTransfers, setAllTransfers, removeAllTransfers }) {
   Transfers.propTypes = {
-    transfers: PropTypes.arrayOf(PropTypes.string).isRequired,
+    transfers: PropTypes.arrayOf(PropTypes.object).isRequired,
     setTransfers: PropTypes.func.isRequired,
     setAllTransfers: PropTypes.func.isRequired,
     removeAllTransfers: PropTypes.func.isRequired,
   };
 
-  if (!transfers[0].checked) {
-    if (transfers.slice(1).filter((elem) => !elem.checked).length === 0) {
-      setTransfers('Все');
+  useEffect(() => {
+    if (!transfers[0].checked) {
+      if (transfers.slice(1).filter((elem) => !elem.checked).length === 0) {
+        setTransfers('Все');
+      }
     }
-  }
+  }, [ transfers, setTransfers ]);
 
   const onTransfers = (name) => {
     if (transfers[0].checked) {
