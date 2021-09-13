@@ -44,12 +44,12 @@ function Transfers({ transfers, setTransfers, setAllTransfers, removeAllTransfer
   return (
     <div className={classes.filters}>
       <div>
-        <span>КОЛИЧЕСТВО ПЕРЕСАДОК</span>
+        <span>КОЛИЧЕСТВО ПЕРЕСАДОК:</span>
       </div>
       <ul className={classes.transfers}>
         {transfers.map(({ name, checked }) => (
-          <li key={name}>
-            <label className={classes.transfers_item}>
+          <li key={name} className={classes.transfers_item}>
+            <label >
               <input type="checkbox" name={name} checked={checked} onChange={() => onTransfers(name)} />
               {name}
             </label>

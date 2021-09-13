@@ -1,1 +1,1 @@
-https://aviasales-amber-omega.vercel.app/
+https://aviasales-xamichee.vercel.app/
