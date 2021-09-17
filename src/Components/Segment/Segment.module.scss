@@ -5,15 +5,15 @@
   align-items: flex-start;
 
   .route {
-    width: 40%;
+    flex: 1 1 40%;
   }
 
   .duration {
-    width: 30%;
+    flex: 1 1 30%;
   }
 
   .transfers {
-    width: 30%;
+    flex: 1 1 30%;
   }
 
   .title {

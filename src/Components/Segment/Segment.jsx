@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { flightDuration, arrival, departure } from './timeHandlers';
+import { flightDuration, arrival, departure } from '../../utils/timeUtils';
 import classes from './Segment.module.scss';
 
 const Segment = ({ segment: { origin, destination, date, duration, stops } }) => {

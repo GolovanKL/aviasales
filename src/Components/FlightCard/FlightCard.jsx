@@ -1,4 +1,5 @@
 import React from 'react';
+import uniqid from 'uniqid';
 import PropTypes from 'prop-types';
 
 import Segment from '../Segment/Segment';
@@ -20,8 +21,7 @@ export default function FlightCard({ carrier, price, segments }) {
         <span className={classes.price_amount}>{price.toLocaleString('ru-RU')} Р</span>
         <img src={carrierLogo} alt="carrierLogo" />
       </div>
-      <Segment segment={segments[0]} />
-      <Segment segment={segments[1]} />
+      {segments.map(segment => <Segment key={uniqid()} segment={segment} />)}
     </div>
   );
 }

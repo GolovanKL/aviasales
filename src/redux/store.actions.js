@@ -51,6 +51,7 @@ export const fetchData = () => (dispatch) => {
           getData(searchId);
         } else {
           dispatch(setLoading(false));
+          dispatch(setError(error.message));
         }
       });
 
