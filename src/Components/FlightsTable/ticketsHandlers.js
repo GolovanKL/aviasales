@@ -24,7 +24,7 @@ const sortingArray = (array, sortingType) => {
 };
 
 const filterArray = (array, filters) => {
-  if (filters[0].checked) return array;
+  if (filters[0].checked) return [...array];
   let result = [];
   filters.slice(1).forEach(elem => {
     if (elem.checked) {

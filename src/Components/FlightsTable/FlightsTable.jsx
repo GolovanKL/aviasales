@@ -1,31 +1,24 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import uniqid from "uniqid";
-import PropTypes from "prop-types";
 import Spin from 'antd/es/spin';
 import 'antd/es/spin/style/css';
 
 import Sorting from "../Sorting/Sorting";
 import FlightCard from "../FlightCard/FlightCard";
 
-import { fetchData } from "../../redux/store.actions";
+import { fetchData } from "../../redux/mainSlice";
 import dataToRender from "./ticketsHandlers";
 
 import classes from './FlightsTable.module.scss';
 
-function FlightsTable({ isLoading, tickets, transfers, activeSort, fetchData, error }) {
-  FlightsTable.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
-    transfers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    activeSort: PropTypes.string.isRequired,
-    fetchData: PropTypes.func.isRequired,
-    error: PropTypes.string.isRequired
-  };
+function FlightsTable() {
+  const dispatch = useDispatch();
+  const { isLoading, tickets, transfers, activeSort, error } = useSelector(state => state.main);
 
   useEffect(() => {
-    if (tickets.length === 0) fetchData();
-  }, [fetchData, tickets.length]);
+    if (tickets.length === 0) dispatch(fetchData());
+  }, [ tickets.length, dispatch]);
 
   const ticketsToRender = dataToRender(transfers, tickets, activeSort);
 
@@ -57,14 +50,5 @@ function FlightsTable({ isLoading, tickets, transfers, activeSort, fetchData, er
   );
 }
 
-const mapDispatchToProps = { fetchData };
+export default FlightsTable;
 
-const mapStateToProps = ({ isLoading, tickets, transfers, activeSort, error }) => ({
-  isLoading,
-  tickets,
-  transfers,
-  activeSort,
-  error,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FlightsTable);

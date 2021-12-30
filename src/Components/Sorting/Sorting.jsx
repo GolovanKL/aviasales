@@ -1,17 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 
-import { setSorting } from '../../redux/store.actions';
+import { setSorting } from '../../redux/mainSlice';
 
 import classes from './Sorting.module.scss';
 
-function Sorting({ sorts, setSorting }) {
-  Sorting.propTypes = {
-    sorts: PropTypes.arrayOf(PropTypes.string).isRequired,
-    setSorting: PropTypes.func.isRequired,
-  };
+function Sorting() {
+  const dispatch = useDispatch();
+  const { sorts } = useSelector(store => store.main);
 
   return (
     <div className={classes.sorting}>
@@ -21,7 +18,7 @@ function Sorting({ sorts, setSorting }) {
           type="button"
           name={name}
           className={classNames(classes.button, active && classes.active)}
-          onClick={({ target }) => setSorting(target.name)}
+          onClick={({ target }) => dispatch(setSorting(target.name))}
         >
           {name}
         </button>
@@ -30,8 +27,4 @@ function Sorting({ sorts, setSorting }) {
   );
 }
 
-const mapDispatchToProps = { setSorting };
-
-const mapStateToProps = ({ sorts }) => ({ sorts });
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sorting);
+export default Sorting;

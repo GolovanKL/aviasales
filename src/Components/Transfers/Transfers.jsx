@@ -1,44 +1,39 @@
 import React, { useEffect } from "react";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector} from 'react-redux';
 
-import { setTransfers, setAllTransfers, removeAllTransfers } from '../../redux/store.actions';
+import { setTransfers, setAllTransfers, removeAllTransfers } from '../../redux/mainSlice';
 
 import classes from './Transfers.module.scss';
 
-function Transfers({ transfers, setTransfers, setAllTransfers, removeAllTransfers }) {
-  Transfers.propTypes = {
-    transfers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    setTransfers: PropTypes.func.isRequired,
-    setAllTransfers: PropTypes.func.isRequired,
-    removeAllTransfers: PropTypes.func.isRequired,
-  };
+function Transfers() {
+  const dispatch = useDispatch();
+  const { transfers } = useSelector(state => state.main);
 
   useEffect(() => {
     if (!transfers[0].checked) {
       if (transfers.slice(1).filter((elem) => !elem.checked).length === 0) {
-        setTransfers('Все');
+        dispatch(setTransfers('Все'));
       }
     }
-  }, [ transfers, setTransfers ]);
+  }, [ transfers, dispatch ]);
 
   const onTransfers = (name) => {
     if (transfers[0].checked) {
       switch (name) {
         case 'Все':
-          removeAllTransfers();
+          dispatch(removeAllTransfers());
           return;
         default:
-          setTransfers(name);
-          setTransfers('Все');
+          dispatch(setTransfers(name));
+          dispatch(setTransfers('Все'));
       }
     } else {
       switch (name) {
         case 'Все':
-          setAllTransfers();
+          dispatch(setAllTransfers());
           return;
         default:
-          setTransfers(name);
+          dispatch(setTransfers(name));
       }
     }
   };
@@ -62,12 +57,5 @@ function Transfers({ transfers, setTransfers, setAllTransfers, removeAllTransfer
   );
 }
 
-const mapDispatchToProps = {
-  setTransfers,
-  setAllTransfers,
-  removeAllTransfers,
-};
+export default Transfers;
 
-const mapStateToProps = ({ transfers }) => ({ transfers });
-
-export default connect(mapStateToProps, mapDispatchToProps)(Transfers);
