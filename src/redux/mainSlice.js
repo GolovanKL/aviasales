@@ -14,7 +14,6 @@ const mainSlice = createSlice({
     },
 
     setAllTransfers(state) {
-      console.log('setAllTransfers');
       state.transfers = state.transfers.map(elem => ({...elem, checked: true}))
     },
 
@@ -60,7 +59,6 @@ export const fetchData = createAsyncThunk(
 
     const getData = async (searchId) => axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
       .then(({data}) => {
-        console.log(data.tickets);
         dispatch(addTickets(data.tickets));
         if (loading) {
           dispatch(setLoading(false));
@@ -80,7 +78,6 @@ export const fetchData = createAsyncThunk(
 
     await axios.get('https://front-test.beta.aviasales.ru/search')
       .then(({data: {searchId}}) => {
-        console.log(searchId);
         getData(searchId)
       })
       .catch((error) => {
